@@ -1,25 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Route, Routes } from "react-router-dom";
-import { DefaultContext } from './Context';
-
-// import NotFoundPage from './Components/NotFoundPage';
-import Header from './components/Header/Header';
-import HeroSection from './components/HeroSection/HeroSection';
-import Footer from './components/Footer/Footer';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import NotFoundPage from './components/NotFoundPage/NotFoundPage';
-import AboutUs from './components/AboutUs/AboutUs';
-import LoanCalculator from './components/LoanCalculator/LoanCalculator';
-
-
+import Header from "./components/Header/Header";
+import {Route, Routes} from "react-router-dom";
+import HeroSection from "./components/HeroSection/HeroSection";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import AboutUs from "./components/AboutUs/AboutUs";
+import LoanCalculator from "./components/LoanCalculator/LoanCalculator";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  return (
-    <>
-    <Header />
-
-    <DefaultContext.Provider>
+    return (
+        <div className="app-container">
+            <Header />
+            <div className="app-spacer">
             <Routes>
                 <Route path="/" element={<HeroSection />}/>
                 <Route path="/login" element={<Login />}/>
@@ -28,11 +21,10 @@ function App() {
                 <Route path="/loan-calculator" element={<LoanCalculator />}/>
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
-    </DefaultContext.Provider>
-
-    <Footer />
-    </>
-  );
-}
+            <Footer />
+            </div>
+        </div>
+    );
+};
 
 export default App;

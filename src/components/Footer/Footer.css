@@ -1,10 +1,10 @@
 /* Footer styles */
 
 footer {
-    font-family: Poppins;
     background-color: #23262d;
     padding: '20 0 px';
     color: #fff;
+    flex: 1;
 }
 
 .container {
@@ -24,8 +24,11 @@ footer {
     margin: 0;
     padding: 20px;
     font-size: 14px;
-    font-size: 18px;
     line-height: 22px;
     text-align: center;
     color: white;
+}
+
+.footer-content h3 {
+    flex: 1;
 }

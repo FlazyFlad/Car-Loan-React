@@ -24,18 +24,20 @@ header {
 .logo a {
     margin: 0;
     font-size: 25px;
-    font-weight: 600px;
+    font-weight: 700;
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 
 .logo a span {
     color: #FFC107;
+    cursor: pointer;
 }
 
 .act-link {
     font-size: 19px;
-    font-weight: 400px;
+    font-weight: 500;
     color: white;
     background-color: #FFC107;
     border: none;
@@ -43,6 +45,7 @@ header {
     border-radius: 30px;
     cursor: pointer;
     padding: 10px 30px;
+    transition: all 0.3s ease;
 }
 
 nav ul {
@@ -59,11 +62,16 @@ nav ul li {
 nav ul li a {
     font-size: 17px;
     text-decoration: none;
-    color: #333; /* Dark gray color for the navigation links */
+    color: #333;
     font-weight: 500;
-    transition: color 0.3s ease; /* Smooth transition for the text color */
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #FFC107; /* Yellow color on hover */
+    color: #FFC107;
+    cursor: pointer;
+}
+
+li:hover {
+    cursor: pointer;
 }

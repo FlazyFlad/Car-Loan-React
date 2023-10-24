@@ -6,9 +6,9 @@ const Header = () => {
     return (
         <>
     <header>
-        <div class="container">
-            <div class="logo">
-                <Link to="/"> <i class="fa fa-car" aria-hidden="true"></i> Your Car <span>Loan</span></Link>
+        <div className="container">
+            <div className="logo">
+                <Link to="/"> <i className="fa fa-car" aria-hidden="true"></i> Your Car <span>Loan</span></Link>
             </div>
             <nav>
                 <ul>

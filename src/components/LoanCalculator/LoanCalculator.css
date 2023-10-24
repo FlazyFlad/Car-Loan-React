@@ -3,11 +3,9 @@ body {
 }
 
 .calculator-container {
-    max-width: 400px;
-    margin: 195px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    width: 1024px;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -19,12 +17,12 @@ body {
 
 .input-group label {
     margin-right: 10px;
-    width: 160px; /* Fixed width for labels */
+    width: 160px;
     text-align: right;
 }
 
 .input-group input {
-    width: 200px; /* Fixed width for input fields */
+    width: 200px;
 }
 
 button {
@@ -39,3 +37,5 @@ button {
 button:hover {
     background-color: #FFD54F;
 }
+
+
