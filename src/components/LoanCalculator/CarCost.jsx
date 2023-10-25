@@ -16,7 +16,7 @@ const CarCost = ({ value, onChange, circValue, circOnchange, formatNumber }) => 
                         onChange={onChange}
                         max="50000000"
                         min="0"
-                        className='text-black text-sm my-4 w-60 h-12 rounded-md px-2 py-2
+                        className='text-black text-sm my-4 w-40 h-12 rounded-md px-2 py-2
                         focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-yellow-400'
                     />
                 </div>
@@ -26,7 +26,7 @@ const CarCost = ({ value, onChange, circValue, circOnchange, formatNumber }) => 
                     onChange={circOnchange}
                     max={50000000}
                     label={formatNumber(circValue)}
-                    labelColor="#005a58"
+                    labelColor="#64045c"
                     knobColor="#FFC107"
                     progressColorFrom="#FFC107"
                     progressColorTo="#64045c"
@@ -34,7 +34,7 @@ const CarCost = ({ value, onChange, circValue, circOnchange, formatNumber }) => 
                     trackColor="#eeeeee"
                     trackSize={24}
                     dataIndex={10}
-                    className='text-sm'
+                    valueFontSize="1.5rem"
                 />
             </div>
         </div>

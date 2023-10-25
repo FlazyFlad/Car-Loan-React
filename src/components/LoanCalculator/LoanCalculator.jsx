@@ -3,10 +3,20 @@ import './LoanCalculator.css';
 import CarCost from "./CarCost";
 import TitleText from "./TitleText";
 import InitialPayment from "./InitialPayment";
+import LoanTermSelector from "./LoanTermSelector";
+import CarChoice from "./CarChoice";
+import RateAndLoan from "./RateAndLoad";
+import PaymentMethod from "./PaymentMethod";
+import CarLoanEstimate from "./CarLoanEstimate";
+import ApprovalButton from "./ApprovalButton";
 
 const LoanCalculator = () => {
     const [carValue, setCarValue] = useState(12000000);
     const [inputValue, setInputValue] = useState(carValue.toString());
+    const [selectedTerm, setSelectedTerm] = useState(4);
+    const [selectedCar, setSelectedCar] = useState('new');
+    const [selectedMethod, setSelectedMethod] = useState('Equal Parts');
+
 
     const separateThousands = (value) => {
         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -19,7 +29,7 @@ const LoanCalculator = () => {
         if (value >= 1000000) {
             return (value / 1000000).toFixed(1) + " M ₮";
         }
-        return value % 1 === 0 ? value + " ₮" : value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₮";
+        return value % 1 === 0 ? value + " " : value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₮";
     }
 
     const handleCarCostChange = (event) => {
@@ -55,6 +65,34 @@ const LoanCalculator = () => {
                     circleOnChange={(value) => setCarValue(value / 0.1)}
                     formatNumber={formatNumber}
                 />
+            </div>
+            <div className="items-center flex gap-8 flex-row md:flex-row mt-2 justify-between">
+                <div className="flex flex-col w-full">
+                    <LoanTermSelector
+                        setSelectedTerm={setSelectedTerm}
+                        selectedTerm={selectedTerm}
+                    />
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                    <CarChoice
+                        selectedCar={selectedCar}
+                        setSelectedCar={setSelectedCar}
+                    />
+                    <RateAndLoan isUsed={false} />
+                </div>
+            </div>
+
+            <div className="flex justify-center gap-8 items-start mt-2">
+                <div className="flex flex-col gap-2 w-full">
+                    <PaymentMethod
+                        selectedMethod={selectedMethod}
+                        setSelectedMethod={setSelectedMethod}
+                    />
+                    <ApprovalButton />
+                </div>
+                <div className="w-full">
+                    <CarLoanEstimate />
+                </div>
             </div>
         </div>
     );
