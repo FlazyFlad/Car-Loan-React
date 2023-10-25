@@ -1,29 +1,35 @@
-import React, {useState} from 'react';
-import './LoanCalculator.css'
+import React, { useState, useMemo } from 'react';
+import './LoanCalculator.css';
 import CarCost from "./CarCost";
 import TitleText from "./TitleText";
 import InitialPayment from "./InitialPayment";
 
 const LoanCalculator = () => {
     const [carValue, setCarValue] = useState(12000000);
+    const [inputValue, setInputValue] = useState(carValue.toString());
+
+    const separateThousands = (value) => {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    const formattedCarValue = useMemo(() => separateThousands(carValue), [carValue]);
+    const initialPaymentValue = useMemo(() => separateThousands(carValue * 0.1), [carValue]);
 
     const formatNumber = (value) => {
         if (value >= 1000000) {
             return (value / 1000000).toFixed(1) + " M ₮";
         }
-        return value.toString();
+        return value % 1 === 0 ? value + " ₮" : value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₮";
     }
 
     const handleCarCostChange = (event) => {
-        const newValue = Number(event.target.value.replace(/,/g, ''));
+        setInputValue(event.target.value);
+        const newValue = Number(event.target.value.replace(/,/g, '').replace(/\s+/g, ''));
         if (newValue >= 0 && newValue <= 50000000) {
             setCarValue(newValue);
         }
     };
 
-    const separateThousands = (value) => {
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
 
     return (
         <div className="calculator-container">
@@ -33,13 +39,22 @@ const LoanCalculator = () => {
             />
             <div className="calculator flex gap-8 flex-row md:flex-row mt-12">
                 <CarCost
-                    value={separateThousands(carValue)}
+                    value={formattedCarValue}
                     onChange={(e) => handleCarCostChange(e)}
                     circValue={carValue}
                     circOnchange={(value) => setCarValue(value)}
                     formatNumber={formatNumber}
                 />
-                <InitialPayment />
+                <InitialPayment
+                    paymentValue={initialPaymentValue}
+                    handlePaymentChange={(e) => {
+                        const newPaymentValue = Number(e.target.value.replace(/,/g, '').replace(/\s+/g, ''));
+                        setCarValue(newPaymentValue / 0.1);
+                    }}
+                    circleValue={formatNumber(carValue * 0.1)}
+                    circleOnChange={(value) => setCarValue(value / 0.1)}
+                    formatNumber={formatNumber}
+                />
             </div>
         </div>
     );

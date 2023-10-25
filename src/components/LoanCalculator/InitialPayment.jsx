@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
 import CircularSlider from '@fseehawer/react-circular-slider';
 
-function InitialPayment() {
-    const [paymentValue, setPaymentValue] = useState(120000);
+const InitialPayment = ({ paymentValue, handlePaymentChange, circleValue, circleOnChange, formatNumber }) => {
 
-    const formatNumber = (value) => {
-        if (value >= 1000) {
-            return (value / 1000).toFixed(1) + " M ₮";
-        }
-        return value.toString() + " ₮";
-    }
-
-    const handleInputChange = (event) => {
-        const newValue = Number(event.target.value.replace(/,/g, ''));
-        if (newValue >= 0 && newValue <= 500000) {
-            setPaymentValue(newValue);
-        }
-    };
-
-    const separateThousands = (value) => {
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    const displayValue = formatNumber(circleValue);
 
     return (
         <div className="car-cost">
@@ -30,19 +13,20 @@ function InitialPayment() {
                     <p className='text-gray-white text-xs my-4'>Minimum 10% of the cost</p>
                     <input
                         type="text"
-                        value={separateThousands(paymentValue)}
-                        onChange={handleInputChange}
+                        value={paymentValue}
+                        onChange={handlePaymentChange}
                         max="500000"
                         min="0"
                         className='text-black text-sm my-4 w-60 h-12 rounded-md px-2 py-2
-                        focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-yellow-400'                    />
+                        focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-yellow-400'
+                    />
                 </div>
                 <CircularSlider
                     width={200}
-                    value={paymentValue}
-                    onChange={(value) => setPaymentValue(value)}
+                    value={circleValue}
+                    onChange={circleOnChange}
                     max={500000}
-                    label={formatNumber(paymentValue)}
+                    label={displayValue}
                     labelColor="#005a58"
                     knobColor="#FFC107"
                     progressColorFrom="#FFC107"
