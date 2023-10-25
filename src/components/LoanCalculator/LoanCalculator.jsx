@@ -16,6 +16,10 @@ const LoanCalculator = () => {
     const [selectedTerm, setSelectedTerm] = useState(4);
     const [selectedCar, setSelectedCar] = useState('new');
     const [selectedMethod, setSelectedMethod] = useState('Equal Parts');
+    const [monthlyPayment, setMonthlyPayment] = useState(32978);
+    const [interestRate, setInterestRate] = useState(27);
+    const [fullRate, setFullRate] = useState(30.6);
+    const [otherBanksPayment, setOtherBanksPayment] = useState(38330);
 
 
     const separateThousands = (value) => {
@@ -40,6 +44,19 @@ const LoanCalculator = () => {
         }
     };
 
+    const handleLogs = () => {
+        const log = {
+            carValue: carValue.toString(),
+            selectedTerm: selectedTerm.toString(),
+            selectedCar: selectedCar,
+            selectedMethod: selectedMethod,
+            monthlyPayment: monthlyPayment.toString(),
+            interestRate: interestRate.toString(),
+            fullRate: fullRate.toString(),
+            otherBanksPayment: otherBanksPayment.toString()
+        }
+        console.log(JSON.stringify(log));
+    }
 
     return (
         <div className="calculator-container">
@@ -88,10 +105,15 @@ const LoanCalculator = () => {
                         selectedMethod={selectedMethod}
                         setSelectedMethod={setSelectedMethod}
                     />
-                    <ApprovalButton />
+                    <ApprovalButton handleLogs={handleLogs} />
                 </div>
                 <div className="w-full">
-                    <CarLoanEstimate />
+                    <CarLoanEstimate
+                        monthlyPayment={monthlyPayment}
+                        interestRate={interestRate}
+                        fullRate={fullRate}
+                        otherBanksPayment={otherBanksPayment}
+                    />
                 </div>
             </div>
         </div>

@@ -1,9 +1,11 @@
 import React from 'react';
 import { ArrowRightIcon } from '@heroicons/react/solid';
 
-const ApprovalButton = ({}) => {
+const ApprovalButton = ({handleLogs}) => {
     return (
-        <div className="bg-yellow-500 p-4 rounded-xl flex justify-between items-center gap-4
+        <div
+            onClick={handleLogs}
+            className="bg-yellow-500 p-4 rounded-xl flex justify-between items-center gap-4
         cursor-pointer transition duration-300 ease-in-out hover:bg-yellow-600">
             <div>
                 <div className="text-white font-semibold text-lg">Get Approval</div>

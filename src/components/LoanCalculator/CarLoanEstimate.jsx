@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-const CarLoanEstimate = () => {
-    const [monthlyPayment, setMonthlyPayment] = useState(32978);
-    const [interestRate, setInterestRate] = useState(27);
-    const [fullRate, setFullRate] = useState(30.6);
-    const [otherBanksPayment, setOtherBanksPayment] = useState(38330);
+const CarLoanEstimate = ({monthlyPayment, setMonthlyPayment, interestRate, setInterestRate, fullRate, setFullRate, otherBanksPayment, setOtherBanksPayment}) => {
 
     return (
         <div className="bg-gray-800 rounded-lg w-full mx-auto p-4">
