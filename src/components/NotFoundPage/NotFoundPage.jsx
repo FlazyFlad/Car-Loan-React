@@ -6,11 +6,11 @@ const NotFoundPage = () => {
     return (
         <>
         
-        <div class="notfound-bg">
-            <div class="not-found-container">
+        <div className="notfound-bg">
+            <div className="not-found-container">
                 <h1>Looks like you're lost</h1>
                 <p>The page you are looking for is not available!</p>
-                <Link to="/" class="cta-button">Go to Home</Link>
+                <Link to="/" className="cta-button">Go to Home</Link>
             </div>
         </div>
 

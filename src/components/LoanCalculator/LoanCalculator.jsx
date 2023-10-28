@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, lazy, Suspense } from 'react';
 import './LoanCalculator.css';
 import CarCost from "./CarCost";
 import TitleText from "./TitleText";
@@ -11,6 +11,7 @@ import CarLoanEstimate from "./CarLoanEstimate";
 import ApprovalButton from "./ApprovalButton";
 
 const LoanCalculator = () => {
+    const [loading, setLoading] = useState(true);
     const [carValue, setCarValue] = useState(12000000);
     const [inputValue, setInputValue] = useState(carValue.toString());
     const [selectedTerm, setSelectedTerm] = useState(4);
@@ -20,6 +21,7 @@ const LoanCalculator = () => {
     const [interestRate, setInterestRate] = useState(27);
     const [fullRate, setFullRate] = useState(30.6);
     const [otherBanksPayment, setOtherBanksPayment] = useState(38330);
+    
 
 
     const separateThousands = (value) => {
@@ -58,7 +60,25 @@ const LoanCalculator = () => {
         console.log(JSON.stringify(log));
     }
 
+    useEffect(() => {
+        // Simulating an API call with setTimeout
+        const fetchData = () => {
+            setTimeout(() => {
+                setLoading(false);
+            }, 5000); // Simulating 2 seconds loading time
+        };
+
+        fetchData();
+    }, []); // Empty dependency array ensures this effect runs once after the initial render
+
+
     return (
+        <>
+        {loading ? (
+            <div className="loading-container">
+                <div className="spinner"></div>
+            </div>
+        ) : (
         <div className="calculator-container">
             <TitleText
                 titleText="Car Loan Calculator"
@@ -117,6 +137,8 @@ const LoanCalculator = () => {
                 </div>
             </div>
         </div>
+        )}
+        </>
     );
 }
 

@@ -1,31 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Register.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+    const [error, setError] = useState(null);
+
+    const handleInputChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userExists = users.some(user => user.email === formData.email);
+        if (userExists) {
+            setError('User with this email already exists');
+        } else {
+            users.push(formData);
+            localStorage.setItem('users', JSON.stringify(users));
+            navigate('/login');
+        }
+    };
+    
+
     return (
         <>
-            <div class="register-container">
-                <div class="form-container">
-                    <h2>Register for Your Car Loan</h2>
-                    <form id="register-form" class="form">
-                        <input type="text" placeholder="UserName" required />
-                        <input type="email" placeholder="Email" required />
-                        <input type="password" placeholder="Password" required />
-                        <input type="password" placeholder="Confirm Password" required />
-                        <button type="submit" class="cta-button">Register</button>
+            <div className="register-container">
+                <div className="form-container">
+                    <h2>Register for Your Car Loan</h2> <br />
+                    <form id="register-form" className="form" onSubmit={handleSubmit}>
+                        <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleInputChange} required />
+                        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required />
+                        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} required />
+                        <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleInputChange} required />
+                        <button type="submit" className="ctaa-button">Register</button>
+                        {error && <p className="error-message">{error}</p>}
                         <p>Already have an account? 
-
-                            <Link style={{marginLeft: '5px'}} to="/login">
+                            <Link style={{ marginLeft: '5px' }} to="/login">
                                 Login
                             </Link>
-
                         </p>
                     </form>
                 </div>
             </div>
         </>
     );
-}
+};
 
 export default Register;

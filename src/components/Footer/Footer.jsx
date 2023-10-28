@@ -7,7 +7,7 @@ const Footer = () => {
         <>
         
         <footer>
-            <div class="footer-content">
+            <div className="footer-content">
                 <p>&copy; 2023 Your Car Loan. All Rights Reserved.</p>
             </div>
         </footer>

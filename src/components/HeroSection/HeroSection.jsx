@@ -22,13 +22,13 @@ const HeroSection = () => {
       
     return (
         <>
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="animated-text"> <span class="auto_input"></span></h1>
+        <section className="hero">
+            <div className="hero-content">
+                <h1 className="animated-text"> <span className="auto_input"></span></h1>
                 <p>Explore our easy car loan options tailored just for you.</p>
 
                 <Link to="/loan-calculator">
-                    <button class="ctaa-button">
+                    <button className="ctaa-button">
                         Get Started
                     </button>
                 </Link>

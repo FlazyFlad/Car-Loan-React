@@ -35,8 +35,8 @@ body {
     border-radius: 5px;
 }
 
-.cta-button {
-    background-color: #FFC107;
+.ctaa-button {
+    background-color: #FFC107 !important;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -45,7 +45,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
+.ctaa-button:hover {
     background-color: #FFD54F;
 }
 
